@@ -1,17 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
-import { Routes, Route, Link } from react-router-dom
+import { Routes, Route, Link } from 'react-router-dom'
+import Main from './components/main/Main';
+import InTheaters from './components/inTheaters/InTheaters';
+import ComingSoon from './components/comingSoon/ComingSoon';
+import Movie from './components/Movie/Movie';
 
 function App() {
+
   return (
-    <div>
-      <header>
-        <h1>Filmster</h1>
-        <ul>
-          
-        </ul>
-      </header>
-    </div>
+      <div>
+        <header>
+          <h1>Filmster</h1>
+          <div>
+            <Link to ='/'> Home </Link>
+            <Link to ='/api/movies'> In Theaters </Link>
+            <Link to ='/comingsoon'> Coming Soon </Link>
+          </div>
+        </header>
+        <main>
+          <Routes>
+            <Route path='/' element={<Main/>} />
+            <Route path='/api/movies' element={<InTheaters/>}/>
+            <Route path='/api/movies/:id' element={<Movie/>}/>
+            <Route path='/comingsoon' elemnent={<ComingSoon/>}/>
+          </Routes>
+        </main>
+      </div>  
   );
 }
 
