@@ -10,7 +10,7 @@ function ComingSoon() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:8000/api/upcoming')
+    fetch('http://localhost:8000/upcoming')
       .then((res) => res.json())
       .then((json)=>{
         setUpcoming(json);
@@ -32,7 +32,7 @@ function ComingSoon() {
         return(
           <div key={a._id}>
             <Link
-            to={`/api/upcoming/${a._id}`}>
+            to={`/upcoming/${a._id}`}>
               <img src={`https://image.tmdb.org/t/p/w300${a.poster_path}`} alt={a.original_title} />
               <h3>{a.original_title}</h3>
             </Link>

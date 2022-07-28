@@ -9,7 +9,7 @@ function InTheaters() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:8000/api/movies')
+    fetch('http://localhost:8000/movies')
       .then((res) => res.json())
       .then((json)=>{
         setMovies(json);
@@ -32,7 +32,7 @@ function InTheaters() {
         return (
           <div key={movie._id}>
             <Link 
-            to={`/api/movies/${movie._id}`}>
+            to={`/movies/${movie._id}`}>
               <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.original_title} />
               <h3>{movie.original_title}</h3>
             </Link>

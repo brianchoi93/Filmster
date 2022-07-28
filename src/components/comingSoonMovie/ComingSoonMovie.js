@@ -13,7 +13,7 @@ function ComingSoonMovie(props) {
   
  useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/api/upcoming/${id}`)
+    fetch(`http://localhost:8000/upcoming/${id}`)
       .then((res) => res.json())
       .then((json) => {
         setComingSoonMovie(json);
