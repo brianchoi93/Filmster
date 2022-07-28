@@ -13,6 +13,7 @@ function InTheaters() {
       .then((res) => res.json())
       .then((json)=>{
         setMovies(json);
+        console.log(json)
         setLoading(false);
       })
       .catch((err) => {
@@ -25,7 +26,6 @@ function InTheaters() {
     return <p>Data is loading...</p>
   }
   
-  console.log(movies)
   return (
     <div>
       {movies.map((movie) => {
