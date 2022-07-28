@@ -25,14 +25,15 @@ function InTheaters() {
     return <p>Data is loading...</p>
   }
   
+  console.log(movies)
   return (
     <div>
-      {movies?.map((movie) => {
+      {movies.map((movie) => {
         return (
           <div key={movie._id}>
             <Link 
-            to={`/intheaters/${movie._id}`}>
-              <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movies.original_title} />
+            to={`/api/movies/${movie._id}`}>
+              <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.original_title} />
               <h3>{movie.original_title}</h3>
             </Link>
           </div>
