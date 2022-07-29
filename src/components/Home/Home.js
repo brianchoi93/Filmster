@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Main(props) {
+function Home(props) {
   return (
     <div>
       <h2> Welcome to Filmster </h2>
@@ -9,4 +9,4 @@ function Main(props) {
   );
 }
 
-export default Main;
+export default Home;
