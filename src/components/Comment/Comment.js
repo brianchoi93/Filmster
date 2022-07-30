@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function Comment(props) {
+function Comment() {
   const [ getComment, setGetComment ] = useState([]);
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState('');
@@ -14,7 +14,6 @@ function Comment(props) {
       .then((res) => res.json())
       .then((json) => {
         setGetComment(json.comments);
-        console.log(json.comments)
         setLoading(false);
       })
       .catch((err) => {
