@@ -2,6 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Comment from '../Comment/Comment';
 
 function InTheatersMovie() {
   const [ inTheaterMovie, setInTheaterMovie ] = useState([]);
@@ -48,6 +49,7 @@ function InTheatersMovie() {
           )
         }
       })}
+      <Comment />
       {loading && 'Loading Movie'}
       {error && error}
     </div>

@@ -41,7 +41,6 @@ function InTheaters() {
           </div>
         )
       })}
-      
       {loading && 'Loading movies'}
       {error && error}
     </div>
