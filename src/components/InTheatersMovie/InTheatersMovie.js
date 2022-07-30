@@ -3,7 +3,6 @@ import ReactPlayer from 'react-player';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Comment from '../Comment/Comment';
-import PostComment from '../Comment/PostComment';
 
 function InTheatersMovie() {
   const [ inTheaterMovie, setInTheaterMovie ] = useState([]);
