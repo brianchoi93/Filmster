@@ -8,7 +8,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 
 function InTheatersMovie() {
   const [ inTheaterMovie, setInTheaterMovie ] = useState([]);
@@ -27,7 +26,7 @@ function InTheatersMovie() {
   
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8000/movies/${id}`)
+    fetch(`https://filmster-backend.herokuapp.com/movies/${id}`)
       .then((res) => res.json())
       .then((json) => {
         setInTheaterMovie(json);
@@ -48,36 +47,38 @@ function InTheatersMovie() {
   }
 
   return (
-    <Box sex={{flexGrow: 1}}>
-      <Grid container spacing = {2} alignItems="stretch">
-        <Grid item xs={12}>
-          <Item>
-            <h2>{inTheaterMovie.original_title}</h2>
-            <img src={`https://image.tmdb.org/t/p/w300${inTheaterMovie.poster_path}`} alt={inTheaterMovie.original_title} />
-            <h3>{inTheaterMovie.overview}</h3>
-            <h5>Release Date: {inTheaterMovie.release_date}</h5>
-          </Item>
+    <div>
+      <Box sex={{flexGrow: 1}}>
+        <Grid container spacing = {2} alignItems="stretch">
+          <Grid item xs={12}>
+            <Item>
+              <h2>{inTheaterMovie.original_title}</h2>
+              <img src={`https://image.tmdb.org/t/p/w300${inTheaterMovie.poster_path}`} alt={inTheaterMovie.original_title} />
+              <h3>{inTheaterMovie.overview}</h3>
+              <h5>Release Date: {inTheaterMovie.release_date}</h5>
+            </Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Item className="vid-wrapper">
+              {inTheaterTrailer.map((e) => {
+                if (e.name === "Official Trailer") {
+                  return (
+                    <div key={e.id} className="player-wrapper">
+                      <ReactPlayer className="react-player" width="100%" controls={true} url={`https://www.youtube.com/watch?v=${e.key}`}/>
+                    </div>
+                  )
+                }
+              })}
+            </Item>
+          </Grid>
+          <Grid item xs={12}>
+            <Comment />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Item className="vid-wrapper">
-            {inTheaterTrailer.map((e) => {
-              if (e.name === "Official Trailer") {
-                return (
-                  <div key={e.id} className="player-wrapper">
-                    <ReactPlayer className="react-player" width="100%" controls={true} url={`https://www.youtube.com/watch?v=${e.key}`}/>
-                  </div>
-                )
-              }
-            })}
-          </Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Comment />
-        </Grid>
-      </Grid>
-    {loading && 'Loading Movie'}
-    {error && error}
-    </Box>
+      {loading && 'Loading Movie'}
+      {error && error}
+      </Box>
+    </div>
   );
 }
 
