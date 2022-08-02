@@ -14,11 +14,9 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 function App() {
-  const pages = ['Home', 'In Theaters', 'Coming Soon']
   const [anchorElNav, setAnchorElNav] = useState(null);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -107,11 +105,9 @@ function App() {
                 FILMSTER
               </Typography>
               <Box id = "nav_container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {/* <Button sx={{ my: 3, display: 'block' }}> */}
-                  <Link className="link" to ='/'> Home </Link>
-                  <Link className="link" to ='/movies'> In Theaters </Link>
-                  <Link className="link" to ='/upcoming'> Coming Soon </Link>
-                {/* </Button> */}
+                <Link className="link" to ='/'> Home </Link>
+                <Link className="link" to ='/movies'> In Theaters </Link>
+                <Link className="link" to ='/upcoming'> Coming Soon </Link>
               </Box>
             </Toolbar>
           </Container>
