@@ -56,21 +56,6 @@ function ComingSoon() {
       {loading && 'Loading movies'}
       {error && error}
     </>
-    // <div>
-    //   {upcoming.map((a) => {
-    //     return(
-    //       <div key={a._id}>
-    //         <Link
-    //         to={`/upcoming/${a._id}`}>
-    //           <img src={`https://image.tmdb.org/t/p/w300${a.poster_path}`} alt={a.original_title} />
-    //           <h3>{a.original_title}</h3>
-    //         </Link>
-    //       </div>
-    //     )
-    //   })}
-    //   {loading && 'Loading Movie'}
-    //   {error && error}
-    // </div>
   );
 }
 
