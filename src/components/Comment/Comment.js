@@ -2,6 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './Comment.css'
+import Box from '@mui/material/Box';
+import { Button, FormLabel, TextField, Typography } from '@mui/material';
+import { List, ListItem, Sheet } from '@mui/joy';
+
 
 function Comment() {
   const [ getComment, setGetComment ] = useState([]);
@@ -9,6 +14,7 @@ function Comment() {
   const [ error, setError ] = useState('');
   const {id} = useParams();
   const navigate = useNavigate();
+
   
   useEffect(() => {
     setLoading(true);
@@ -38,7 +44,7 @@ function Comment() {
       const response = await axios.post('http://localhost:8000/comments', {...comment, movieId: `${id}`});
       console.log(response);
       if (response.status === 200) {
-        navigate('/');
+        navigate(`/movies/${String(id)}`);
       }
     } catch(error) {
       console.log(error, "Somethings not right.");
@@ -50,37 +56,60 @@ function Comment() {
   }
 
   return (
-    <div>
-        {getComment.map((comments) => {
-          return (
-            <>
-              <h3>{comments.title}</h3>
-              <p>{comments.body}</p>
-              <h4>{comments.createdAt}</h4>
-            </>
-          )
-        })}
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="comment">Comment</label>
-          <input
-            onChange={handleChange}
-            id='title'
-            value={comment.title}
-            placeholder='Title'
-            required
-          />
-          <input
-            onChange={handleChange}
-            id='body'
-            value={comment.body}
-            placeholder='Message'
-            required
-          />
-          <button type='submit'>Submit Comment</button>
-        </form>
+    <Box sx={{
+      width: '100%',
+      height: 400,
+      maxWidth: 360,
+      bgcolor: "background.paper"}}
+    >
+      <Sheet
+        sx={{
+          width: 'auto',
+          maxHeight: 400,
+          overflow: 'auto',
+          border: 1,
+          borderColor: 'black',
+        }}
+      >
+        <List>
+          {getComment.map((comments) => {
+            return(
+          <ListItem component="div">
+            <Typography>
+              <>
+                <h4>{comments.title}</h4>
+                <p>{comments.body}</p>
+                <p className='created'>Posted On: {comments.createdAt}</p>
+              </>
+            </Typography>
+          </ListItem>
+            )
+          })}
+        </List>
+      </Sheet>
+      <form className="form" onSubmit={handleSubmit}>
+        <FormLabel className="label" htmlFor="comment">Comment</FormLabel>
+        <TextField
+          fullWidth
+          onChange={handleChange}
+          id='title'
+          value={comment.title}
+          placeholder='Title'
+          required
+        />
+        <TextField
+          fullWidth
+          onChange={handleChange}
+          id='body'
+          value={comment.body}
+          placeholder='Message'
+          required
+        />
+        <Button type='submit'>Submit Comment</Button>
+      </form>
       {loading && 'Loading Comments'}
-      {error && error}
-    </div>
+      {error && error}  
+    </Box>
   );
 }
 

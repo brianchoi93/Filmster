@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton } from '@mui/material';
-import InfoIcon from '@mui/icons-material/Info';
+import './InTheaters.css'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+
 
 function InTheaters() {
 
@@ -9,13 +13,14 @@ function InTheaters() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  
+
   useEffect(() => {
     setLoading(true);
     fetch('http://localhost:8000/movies')
       .then((res) => res.json())
       .then((json)=>{
         setMovies(json);
-        console.log(json)
         setLoading(false);
       })
       .catch((err) => {
@@ -29,50 +34,28 @@ function InTheaters() {
   }
   
   return (
-    <div>
+    <>
       {movies.map((movie) => {
         return (
-          <div key={movie._id}>
-            <Link 
-            to={`/movies/${movie._id}`}>
-              <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.original_title} />
-              <h3>{movie.original_title}</h3>
-            </Link>
-          </div>
+        <Card key={movie._id} sx ={{maxWidth: 345, margin: "20px"}}>
+          <CardMedia
+            component="img"
+            height="500"
+            image={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+            alt={movie.original_title}
+          />
+          <CardContent className="link-container">
+            <Typography className="link-div" gutterBottom component="div">
+              <Link className="more-info" to={`/movies/${movie._id}`}>{movie.original_title}</Link>
+            </Typography>
+          </CardContent>
+        </Card>
         )
       })}
       {loading && 'Loading movies'}
       {error && error}
-    </div>
+    </>
   );
 }
 
 export default InTheaters;
-
-    // <ImageList sx={{ width: 615, height: 1000}}>
-    //   <ImageListItem key="subheader" cols={6}>
-    //     <ListSubheader component='div'>In Theaters</ListSubheader>
-    //   </ImageListItem>
-    //   {movies.map((movie) => (
-    //     <ImageListItem key={movie._id}>
-    //         <Link 
-    //         to={`/movies/${movie._id}`}>
-    //           <img 
-    //             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-    //             srcSet={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} 
-    //             alt={movie.original_title} />
-    //           <ImageListItemBar
-    //             title={movie.original_title}
-    //             actionIcon={
-    //               <IconButton
-    //                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-    //                 aria-label={`info about ${movie.original_title}`}
-    //               >
-    //                 <InfoIcon />
-    //               </IconButton>
-    //             }
-    //           />
-    //         </Link>
-    //     </ImageListItem>
-    //   ))}
-    // </ImageList>

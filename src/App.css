@@ -7,6 +7,18 @@
   pointer-events: none;
 }
 
+.link {
+  display: flex;
+  margin: 10px 0px 10px 0px;
+  text-decoration: none;
+  color: black;
+
+}
+
+.menu-appbar {
+  flex-direction: column;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
