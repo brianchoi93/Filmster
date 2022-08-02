@@ -6,6 +6,10 @@
   margin-top: 10px;
 }
 
-.created {
+.list-container {
+  flex-direction: column;
+  border-bottom: 1px solid black;
+}
+.comment-date {
   font-size: 10px;
 }

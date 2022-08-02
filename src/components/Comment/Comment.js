@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Comment.css'
 import Box from '@mui/material/Box';
-import { Button, FormLabel, TextField, Typography } from '@mui/material';
-import { List, ListItem, Sheet } from '@mui/joy';
+import { Button, FormLabel, TextField } from '@mui/material';
+import { ListItem, Sheet, Container } from '@mui/joy';
 
 
 function Comment() {
@@ -22,12 +22,14 @@ function Comment() {
       .then((res) => res.json())
       .then((json) => {
         setGetComment(json.comments);
+        console.log(json.comments)
         setLoading(false);
       })
       .catch((err) => {
         setError(err, 'something went wrong')
       })
   }, [id])
+  console.log('this is the getComment ===>', getComment)
 
   const [comment, setComment] = useState({
     title: '',
@@ -44,12 +46,25 @@ function Comment() {
       const response = await axios.post('http://localhost:8000/comments', {...comment, movieId: `${id}`});
       console.log(response);
       if (response.status === 200) {
-        navigate(`/movies/${String(id)}`);
+        navigate(`/movies`);
       }
     } catch(error) {
       console.log(error, "Somethings not right.");
     }
   }
+
+  const handleDelete = async(event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.delete(`http://localhost:8000/comments`);
+      console.log(response);
+      if (response.status === 204) {
+        navigate(`/`);
+      }
+    } catch(error) {
+      console.log(error, "Somethings not right...")
+    }
+  };
 
   if(loading) {
     return <p>Data is loading...</p>
@@ -71,21 +86,18 @@ function Comment() {
           borderColor: 'black',
         }}
       >
-        <List>
+        <Container>
           {getComment.map((comments) => {
             return(
-          <ListItem component="div">
-            <Typography>
-              <>
-                <h4>{comments.title}</h4>
-                <p>{comments.body}</p>
-                <p className='created'>Posted On: {comments.createdAt}</p>
-              </>
-            </Typography>
+          <ListItem key={comments._id} component="div" className="list-container">
+            <h4>{comments.title}</h4>
+            <p>{comments.body}</p>
+            <h6>Posted On: {comments.createdAt}</h6>
+            <Button type='delete' onClick={handleDelete}>Delete</Button>
           </ListItem>
             )
           })}
-        </List>
+        </Container>
       </Sheet>
       <form className="form" onSubmit={handleSubmit}>
         <FormLabel className="label" htmlFor="comment">Comment</FormLabel>
