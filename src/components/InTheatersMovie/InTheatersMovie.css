@@ -1,13 +1,60 @@
-/* .vid-wrapper {
-  padding-top: 56.25%;
+.main-box {
+  display: flex;
+  gap: 2;
+  padding: 0;
+  margin: 0;
+}
+
+.vid-box {
+  margin-top: 20px;
 }
 
 .player-wrapper {
   position: relative;
+  padding-top: 56.25%;
 }
 
 .react-player {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
-} */
+}
+
+.comment-card {
+  margin-top: 20px;
+  width: auto;
+}
+
+.form-card {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 670px) {
+
+  .item-container {
+    flex-wrap: wrap;
+    align-items: center;
+    
+  }
+
+  .vid-box {
+    width: 50%;
+  }
+  
+  .main-card {
+    width: 50%;
+  }
+
+  .comment-card {
+    width: 50%;
+ 
+  }
+  
+  .form-card {
+    width: 50%;
+ 
+  }
+
+
+}
+

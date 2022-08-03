@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './InTheaters.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -16,7 +17,7 @@ function InTheaters() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:8000/movies')
+    fetch('https://filmster-backend.herokuapp.com/movies')
       .then((res) => res.json())
       .then((json)=>{
         setMovies(json);
@@ -33,11 +34,13 @@ function InTheaters() {
   }
   
   return (
-    <>
+    <div className="movie-container">
+      <title>In Theaters</title>
       {movies.map((movie) => {
         return (
-        <Card key={movie._id} sx ={{maxWidth: 345, margin: "20px"}}>
+        <Card className="poster-card" key={movie._id} sx ={{maxWidth: 345, margin: "20px"}}>
           <CardMedia
+            className="poster-img"
             component="img"
             height="500"
             image={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -53,7 +56,7 @@ function InTheaters() {
       })}
       {loading && 'Loading movies'}
       {error && error}
-    </>
+    </div>
   );
 }
 

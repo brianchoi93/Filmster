@@ -73,9 +73,9 @@ function App() {
                   }}
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
-                  // sx={{
-                  //   display: { xs: 'block', md: 'none' },
-                  // }}                
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}           
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
@@ -104,10 +104,16 @@ function App() {
               >
                 FILMSTER
               </Typography>
-              <Box id = "nav_container" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                <Link className="link" to ='/'> Home </Link>
-                <Link className="link" to ='/movies'> In Theaters </Link>
-                <Link className="link" to ='/upcoming'> Coming Soon </Link>
+              <Box 
+                id = "nav_container" 
+                sx={{ 
+                  flexGrow: 1, 
+                  display: { xs: 'none', md: 'flex' }, 
+                  color: 'white',
+                }}>
+                  <Link className="link" to ='/'> Home </Link>
+                  <Link className="link" to ='/movies'> In Theaters </Link>
+                  <Link className="link" to ='/upcoming'> Coming Soon </Link>
               </Box>
             </Toolbar>
           </Container>
