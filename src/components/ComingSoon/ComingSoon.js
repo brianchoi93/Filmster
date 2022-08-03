@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../InTheaters/InTheaters.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -36,9 +35,10 @@ function ComingSoon() {
       <title>Coming Soon</title>
       {upcoming.map((movie) => {
         return (
-        <Card className="poster-card" key={movie._id} sx ={{maxWidth: 345, margin: "20px"}}>
+        <Card key={movie._id} sx ={{maxWidth: 345, margin: "20px"}}>
           <CardMedia
-            component="poster-img"
+            className="poster-img"
+            component="img"
             height="500"
             image={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.original_title}
