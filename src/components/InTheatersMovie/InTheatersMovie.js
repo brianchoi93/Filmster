@@ -3,10 +3,10 @@ import ReactPlayer from 'react-player';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Comment from '../Comment/Comment';
+import CommentForm from '../Comment/CommentForm';
 import './InTheatersMovie.css'
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { Box, Paper } from '@mui/material';
 import Card from '@mui/joy/Card';
 
 function InTheatersMovie() {
@@ -48,15 +48,15 @@ function InTheatersMovie() {
 
   return (
     <div>
-      <Box component="ul" sx={{display: 'flex', gap: 2, flexWrap: 'wrap', p:0, m:0}}>
-          <Card>
-            <Item>
+      <Box className="main-box" component="ul" >
+          <Card className="item-container">
+            <Item elevation={24} className="main-card">
               <h2>{inTheaterMovie.original_title}</h2>
               <img src={`https://image.tmdb.org/t/p/w300${inTheaterMovie.poster_path}`} alt={inTheaterMovie.original_title} />
               <h3>{inTheaterMovie.overview}</h3>
               <h5>Release Date: {inTheaterMovie.release_date}</h5>
             </Item>
-            <Item className="vid-box">
+            <Item elevation={0} className="vid-box">
               {inTheaterTrailer.map((e) => {
                 if (e.name === "Official Trailer") {
                   return (
@@ -67,8 +67,11 @@ function InTheatersMovie() {
                 }
               })}
             </Item>
-            <Item className="comment-card">
+            <Item elevation={0} className="comment-card">
               <Comment />
+            </Item>
+            <Item elevation={0} className="form-card">
+              <CommentForm/>
             </Item>
           </Card>
       {loading && 'Loading Movie'}

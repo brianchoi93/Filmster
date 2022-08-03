@@ -11,8 +11,7 @@
   display: flex;
   margin: 10px 0px 10px 0px;
   text-decoration: none;
-  color: black;
-
+  color:inherit;
 }
 
 .menu-appbar {
@@ -25,6 +24,11 @@
   }
 }
 
+@media screen and (min-width: 670px) {
+  .link {
+    padding: 0 20px 0 20px;
+  }
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

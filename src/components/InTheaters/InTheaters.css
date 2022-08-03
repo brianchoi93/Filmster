@@ -1,15 +1,17 @@
-.css-46bh2p-MuiCardContent-root:last-child {
-  padding: 0;
-  margin: 15px 0 15px 0;
-}
-
-.link-div {
-  margin: 0;
-}
-
 .more-info {
   text-decoration: none;
   color: black;
   display:flex;
   justify-content: center;
+}
+
+@media screen and (min-width: 670px) {
+  .movie-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .poster-img {
+    height: auto;
+  }
 }

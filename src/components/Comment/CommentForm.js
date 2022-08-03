@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Comment.css'
-import { Box, Button, FormLabel, TextField } from '@mui/material';
+import { Box, Button, FormLabel, TextField, TextareaAutosize } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 
@@ -23,7 +23,7 @@ function CommentForm() {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/comments', {...comment, movieId: `${id}`});
+      const response = await axios.post('https://filmster-backend.herokuapp.com/comments', {...comment, movieId: `${id}`});
       console.log(response);
       if (response.status === 200) {
         navigate(`/movies/${String(id)}`);
@@ -34,12 +34,7 @@ function CommentForm() {
   }
 
   return (
-    <Box sx={{
-      width: '100%',
-      height: 400,
-      maxWidth: 380,
-      bgcolor: "background.paper"}}
-    >
+    <Box>
       <form className="form" onSubmit={handleSubmit}>
         <FormLabel className="label" htmlFor="comment">Comment</FormLabel>
         <TextField
@@ -50,10 +45,11 @@ function CommentForm() {
           placeholder='Title'
           required
         />
-        <TextField
-          fullWidth
+        <TextareaAutosize
+          style={{width: 330}}
           onChange={handleChange}
           id='body'
+          minRows={10}
           value={comment.body}
           placeholder='Message'
           required

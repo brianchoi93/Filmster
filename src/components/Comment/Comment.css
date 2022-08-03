@@ -1,5 +1,5 @@
 .form {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .list-container {
@@ -7,13 +7,41 @@
   border-bottom: 1px dotted black;
 }
 
+.comment-container {
+
+}
 .comment-date {
   font-size: 10px;
 }
 
-.delete-btn {
-  margin-bottom: 10px;
+.submit-box {
+  justify-content: center;
+  margin: 20px;
 }
-.submit-btn {
-  margin: 10px;
+
+.form-box {
+  width: 100%;
+  height: 200px;
+  max-width: 480px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 670px) {
+  .form {
+    display:flex;
+    flex-direction: column;
+  }
+
+  #title {
+    min-width: 500px;
+  }
+  #body {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 500px;
+    ;
+  }
+  .submit-btn {
+    width: 50%;
+  }
 }

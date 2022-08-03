@@ -1,3 +1,10 @@
+.main-box {
+  display: flex;
+  gap: 2;
+  padding: 0;
+  margin: 0;
+}
+
 .vid-box {
   margin-top: 20px;
 }
@@ -15,5 +22,39 @@
 
 .comment-card {
   margin-top: 20px;
-  width: 325px;
+  width: auto;
 }
+
+.form-card {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 670px) {
+
+  .item-container {
+    flex-wrap: wrap;
+    align-items: center;
+    
+  }
+
+  .vid-box {
+    width: 50%;
+  }
+  
+  .main-card {
+    width: 50%;
+  }
+
+  .comment-card {
+    width: 50%;
+ 
+  }
+  
+  .form-card {
+    width: 50%;
+ 
+  }
+
+
+}
+
